@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <random>
 #include <iostream>
 #include "Player.h"
@@ -119,4 +120,13 @@ std::ostream& operator<<(std::ostream& o, const std::map<Item::Type, Item>& src)
 	return o;
 }
 
-
+//  a)  Player: calls damageDone passing in bonusValue for sword or 0.
+//      returns value returned by damageDone
+int Player::attack() const
+{
+    auto inventoryItr{ inventory.find( Item::Type::sword ) };
+    if( inventoryItr != inventory.end() )
+        return damageDone( inventoryItr->second.getBonusValue() );
+    else
+        return damageDone( 0 );
+}
