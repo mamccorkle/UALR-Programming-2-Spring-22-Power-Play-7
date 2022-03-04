@@ -9,29 +9,31 @@
 //  IDE: Visual Studio 2022 - VERIFIED/UNVERIFIED
 //  IDE: Linux via g++      - VERIFIED/UNVERIFIED
 //
-/*  OBJECTIVES:
+//  OBJECTIVES:
+// TODO:
+// TODO: Object.h gets four purely virtual methods:
+// TODO:     1)  virtual int attack() const = 0;                                                            -   COMPLETE
+// TODO:         a)  Player: calls damageDone passing in bonusValue for sword or 0.                         -   COMPLETE
+// TODO:             returns value returned by damageDone                                                   -   COMPLETE
+// TODO:         b)  Monster: calls damageDone(0) and returns the returned value.                           -   COMPLETE
+// TODO:     2)  virtual void defend(int damage) = 0;                                                       -   .
+// TODO:         a)  Player: calculates AC, passes along damage and AC to damageTaken
+// TODO:         b)  Monster: calls damageTaken(damage, AC);
+// TODO:     3)  virtual void update(Player& player, std::vector<Monster>& monsters) = 0;                   -   .
+// TODO:         a)  Player: lines 44-60 from Goal.6.cpp goes here. The part dealing with attacking vs healing.
+// TODO:             Also playerAttack function is no longer a function, just put the code in the ‘a’ case.
+// TODO:         b)  Monster: The part inside the for_each goes here. for_each now just calls the update…
+// TODO:     4)  virtual void print(std::ostream& o) const;                                                 -   .
+// TODO:         a)  the overload of the << operator will call this to make sure it the proper one is called!
+// TODO:
+// TODO: And two protected methods:
+// TODO:     1)  int damageDone(int modification) const;                                                    -   .
+// TODO:         a)  does the common bits for attack. Monsters pass in 0, player based on sword
+// TODO:     2)  int damageTaken(int damageDone, int AC);                                                   -   .
+// TODO:         a)  does the common bits for defend.
+// TODO:
+// TODO: Mark all appropriate overrides
 
-    Object.h gets four purely virtual methods:
-        1)  virtual int attack() const = 0;                                                                 -   Complete
-            a)  Player: calls damageDone passing in bonusValue for sword or 0. returns value returned by damageDone
-            b)  Monster: calls damageDone(0) and returns the returned value.
-        2)  virtual void defend(int damage) = 0;                                                            -   Complete
-            a)  Player: calculates AC, passes along damage and AC to damageTaken
-            b)  Monster: calls damageTaken(damage, AC);
-        3)  virtual void update(Player& player, std::vector<Monster>& monsters) = 0;                        -   Complete
-            a)  Player: lines 44-60 from Goal.6.cpp goes here. The part dealing with attacking vs healing.
-                Also playerAttack function is no longer a function, just put the code in the ‘a’ case.
-            b)  Monster: The part inside the for_each goes here. for_each now just calls the update…
-        4)  virtual void print(std::ostream& o) const;                                                      -   Complete
-            a)  the overload of the << operator will call this to make sure it the proper one is called!
-
-    And two protected methods:
-        1)  int damageDone(int modification) const;                                                         -   Complete
-            a)  does the common bits for attack. Monsters pass in 0, player based on sword
-        2)  int damageTaken(int damageDone, int AC);                                                        -   Complete
-            a)  does the common bits for defend.
-
-*/
 #include <iostream>
 #include <string>
 #include <vector>

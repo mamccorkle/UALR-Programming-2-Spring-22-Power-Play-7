@@ -4,14 +4,17 @@
     #include "Object.h"
 
     class Player;
-    class Monster :
-        public Object
+    class Monster: public Object
     {
     public:
         Monster() {};
         Monster(const Player& player);
+
         int damage() const;
         void defense(int damage);
+
+        virtual int attack() const;
+
     private:
         int AC{ 0 };
 

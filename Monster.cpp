@@ -70,3 +70,9 @@ void Monster::defense(int damage)
 	std::cout << *this << "!!!" << std::endl;
 	health -= damage;
 }
+
+// Call damageDone with 0 as the argument as the monster does not have an inventory:
+int Monster::attack() const
+{
+    return damageDone( 0 );
+}

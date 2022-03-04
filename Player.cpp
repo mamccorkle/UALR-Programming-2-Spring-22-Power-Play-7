@@ -120,12 +120,14 @@ std::ostream& operator<<(std::ostream& o, const std::map<Item::Type, Item>& src)
 	return o;
 }
 
-//  a)  Player: calls damageDone passing in bonusValue for sword or 0.
-//      returns value returned by damageDone
+// Loop through the players inventory to see if they have a sword in hand
+// If they do:
+//     pass its bonus value on to inflict the damage onto the monster
+// else
+//     pass in zero for the bonus value
 int Player::attack() const
 {
-    auto inventoryItr{ inventory.find( Item::Type::sword ) };
-    if( inventoryItr != inventory.end() )
+    if( auto inventoryItr{ inventory.find( Item::Type::sword ) }; inventoryItr != inventory.end() )
         return damageDone( inventoryItr->second.getBonusValue() );
     else
         return damageDone( 0 );

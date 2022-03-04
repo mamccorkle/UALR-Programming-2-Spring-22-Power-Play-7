@@ -19,6 +19,7 @@
         void heal();
 
         virtual int attack() const;
+
     private:
         std::map<Item::Type, Item> inventory;
         int SP{ 0 };
