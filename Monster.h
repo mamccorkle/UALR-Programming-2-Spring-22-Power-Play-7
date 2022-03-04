@@ -14,6 +14,7 @@
         void defense(int damage);
 
         virtual int attack() const;
+        virtual void defend( int damage );
 
     private:
         int AC{ 0 };

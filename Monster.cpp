@@ -76,3 +76,11 @@ int Monster::attack() const
 {
     return damageDone( 0 );
 }
+
+// Defend calculates the amount of defense the Monster has
+//
+// Passthrough the amount of damage and the Monsters AC to damageTaken
+void Monster::defend( int damage )
+{
+    damageTaken( damage, AC );
+}

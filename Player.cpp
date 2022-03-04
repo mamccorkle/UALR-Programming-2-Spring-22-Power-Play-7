@@ -132,3 +132,20 @@ int Player::attack() const
     else
         return damageDone( 0 );
 }
+
+// Defend calculates the amount of defense the player has based on its inventory
+// AC is the combination of the armors bonusValue and shields bonusValue
+//
+// Find if the player has armor or a shield
+// Then use the bonus values from each and add to the AC value
+// Than pass the amount of damage and the AC and pass it to damageTaken
+void Player::defend( int damage )
+{
+    // Calculate AC:
+    int AC{ };
+    if( auto inventoryItr{ inventory.find( Item::Type::armor ) }; inventoryItr != inventory.end() )
+        AC += inventoryItr->second;
+    if( auto inventoryItr{ inventory.find( Item::Type::shield ) }; inventoryItr != inventory.end() )
+        AC += inventoryItr->second;
+    damageTaken( damage, AC );
+}
