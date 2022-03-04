@@ -4,7 +4,8 @@
     #include <map>
     #include <random>
 
-
+    class Player;
+    class Monster;
     class Object
     {
     public:

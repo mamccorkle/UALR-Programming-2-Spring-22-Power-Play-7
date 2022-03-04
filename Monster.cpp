@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include "Monster.h"
 #include "Player.h"
 
@@ -83,4 +83,20 @@ int Monster::attack() const
 void Monster::defend( int damage )
 {
     damageTaken( damage, AC );
+}
+
+// The Monster update virtual member function will decide if the Monster attacks and if so will allow the player to
+// defend itself:
+void update(Player& player, std::vector<Monster>& monsters)
+{
+    std::bernoulli_distribution willAttack(0.75);
+    if (willAttack(Object::engine))
+    {
+        std::cout << *this << " attacks!" << std::endl;
+        player.defend( attack() );
+    }
+    else
+    {
+        std::cout << *this << " twiddles its thumbs" << std::endl;
+    }
 }

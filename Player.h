@@ -20,6 +20,7 @@
 
         virtual int attack() const;
         virtual void defend( int damage );
+        virtual void update(Player& player, std::vector<Monster>& monsters);
 
     private:
         std::map<Item::Type, Item> inventory;

@@ -15,6 +15,7 @@
 
         virtual int attack() const;
         virtual void defend( int damage );
+        virtual void update(Player& player, std::vector<Monster>& monsters);
 
     private:
         int AC{ 0 };

@@ -16,13 +16,14 @@
 // TODO:         a)  Player: calls damageDone passing in bonusValue for sword or 0.                         -   COMPLETE
 // TODO:             returns value returned by damageDone                                                   -   COMPLETE
 // TODO:         b)  Monster: calls damageDone(0) and returns the returned value.                           -   COMPLETE
-// TODO:     2)  virtual void defend(int damage) = 0;                                                       -   .
-// TODO:         a)  Player: calculates AC, passes along damage and AC to damageTaken
-// TODO:         b)  Monster: calls damageTaken(damage, AC);
-// TODO:     3)  virtual void update(Player& player, std::vector<Monster>& monsters) = 0;                   -   .
-// TODO:         a)  Player: lines 44-60 from Goal.6.cpp goes here. The part dealing with attacking vs healing.
+// TODO:     2)  virtual void defend(int damage) = 0;                                                       -   COMPLETE
+// TODO:         a)  Player: calculates AC, passes along damage and AC to damageTaken                       -   COMPLETE
+// TODO:         b)  Monster: calls damageTaken(damage, AC);                                                -   COMPLETE
+// TODO:     3)  virtual void update(Player& player, std::vector<Monster>& monsters) = 0;                   -   COMPLETE
+// TODO:         a)  Player: lines 44-60 from Goal.6.cpp goes here. The part dealing with attacking vs      -   COMPLETE
+// TODO:             healing.
 // TODO:             Also playerAttack function is no longer a function, just put the code in the ‘a’ case.
-// TODO:         b)  Monster: The part inside the for_each goes here. for_each now just calls the update…
+// TODO:         b)  Monster: The part inside the for_each goes here. for_each now just calls the update…   -   COMPLETE
 // TODO:     4)  virtual void print(std::ostream& o) const;                                                 -   .
 // TODO:         a)  the overload of the << operator will call this to make sure it the proper one is called!
 // TODO:
@@ -106,7 +107,7 @@ int main()
 
 void displayBattle(const Player& player, const std::vector<Monster>& monsters)
 {
-    Object::nameOnly = false; //TODO:: get rid of this and just dot he full cout.
+    // TODO: Fix -> Object::nameOnly = false; //TODO:: get rid of this and just dot he full cout.
     std::cout << player << std::endl;
     std::cout << std::endl << "  Monsters: " << std::endl;
     {
@@ -133,7 +134,7 @@ std::vector<Monster> createMonsters(const Player& player)
 
 void bringOutYourDead(std::vector<Monster>& monsters)
 {
-    Object::nameOnly = true;
+    // TODO: Fix -> Object::nameOnly = true;
     monsters.erase(
             std::remove_if(monsters.begin(), monsters.end(),
                            [](Object& monster)

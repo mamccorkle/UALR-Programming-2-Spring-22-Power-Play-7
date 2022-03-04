@@ -149,3 +149,29 @@ void Player::defend( int damage )
         AC += inventoryItr->second;
     damageTaken( damage, AC );
 }
+
+// The Player update virtual member function will allow you to select the monster to attack or allow you to heal.
+void Player::update(Player &player, std::vector<Monster> &monsters)
+{
+    std::cout << "What do you do? (a)ttack (h)eal ";
+    char command{ 'x' };
+    std::cin >> command;
+    switch (command)
+    {
+        case 'a':
+        {
+            std::cout << "Which Monster: ";
+            int monsterNum{ 0 };
+            std::cin >> monsterNum;
+            if (monsterNum > 0 && monsterNum <= monsters.size())
+                monsters.at( monsterNum - 1 ).defend( player.attack() );
+            break;
+        }
+        case 'h':
+            heal();
+            break;
+        default:
+            std::cout << "please enter a or h" << std::endl;
+            break;
+    }
+}
