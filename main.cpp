@@ -24,16 +24,17 @@
 // TODO:             healing.
 // TODO:             Also playerAttack function is no longer a function, just put the code in the ‘a’ case.
 // TODO:         b)  Monster: The part inside the for_each goes here. for_each now just calls the update…   -   COMPLETE
-// TODO:     4)  virtual void print(std::ostream& o) const;                                                 -   .
-// TODO:         a)  the overload of the << operator will call this to make sure it the proper one is called!
+// TODO:     4)  virtual void print(std::ostream& o) const;                                                 -   COMPLETE
+// TODO:         a)  the overload of the << operator will call this to make sure it the proper one is       -   COMPLETE
+// TODO:             called!
 // TODO:
-// TODO: And two protected methods:
-// TODO:     1)  int damageDone(int modification) const;                                                    -   .
-// TODO:         a)  does the common bits for attack. Monsters pass in 0, player based on sword
-// TODO:     2)  int damageTaken(int damageDone, int AC);                                                   -   .
-// TODO:         a)  does the common bits for defend.
+// TODO: And two protected methods:                                                                         -   COMPLETE
+// TODO:     1)  int damageDone(int modification) const;                                                    -   COMPLETE
+// TODO:         a)  does the common bits for attack. Monsters pass in 0, player based on sword             -   COMPLETE
+// TODO:     2)  int damageTaken(int damageDone, int AC);                                                   -   COMPLETE
+// TODO:         a)  does the common bits for defend.                                                       -   COMPLETE
 // TODO:
-// TODO: Mark all appropriate overrides
+// TODO: Mark all appropriate overrides                                                                     -   COMPLETE
 
 #include <iostream>
 #include <string>
@@ -52,7 +53,6 @@ std::vector<Monster> createMonsters(const Player& player);
 
 void displayBattle(const Player& player, const std::vector<Monster>& monsters);
 void bringOutYourDead(std::vector<Monster>& monsters);
-
 
 int main()
 {

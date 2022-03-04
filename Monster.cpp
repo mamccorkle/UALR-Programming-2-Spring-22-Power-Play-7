@@ -51,25 +51,25 @@ Monster::Monster(const Player& player)
 }
 
 
-int Monster::damage() const
-{
-	int potentialDamage{ strength };
-	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
-
-
-	std::cout << *this << " deals ";
-	return std::max(1, (int)damageDealt(engine));
-}
-
-void Monster::defense(int damage)
-{
-	std::normal_distribution<double> defense(AC, 1.0 / level);
-	damage = std::max(0, damage - (int)defense(engine));
-	std::cout << damage << " damage to ";
-
-	std::cout << *this << "!!!" << std::endl;
-	health -= damage;
-}
+//int Monster::damage() const
+//{
+//	int potentialDamage{ strength };
+//	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
+//
+//
+//	std::cout << *this << " deals ";
+//	return std::max(1, (int)damageDealt(engine));
+//}
+//
+//void Monster::defense(int damage)
+//{
+//	std::normal_distribution<double> defense(AC, 1.0 / level);
+//	damage = std::max(0, damage - (int)defense(engine));
+//	std::cout << damage << " damage to ";
+//
+//	std::cout << *this << "!!!" << std::endl;
+//	health -= damage;
+//}
 
 // Call damageDone with 0 as the argument as the monster does not have an inventory:
 int Monster::attack() const
@@ -87,7 +87,7 @@ void Monster::defend( int damage )
 
 // The Monster update virtual member function will decide if the Monster attacks and if so will allow the player to
 // defend itself:
-void update(Player& player, std::vector<Monster>& monsters)
+void Monster::update(Player& player, std::vector<Monster>& monsters)
 {
     std::bernoulli_distribution willAttack(0.75);
     if (willAttack(Object::engine))
@@ -99,4 +99,13 @@ void update(Player& player, std::vector<Monster>& monsters)
     {
         std::cout << *this << " twiddles its thumbs" << std::endl;
     }
+}
+
+void Monster::print(std::ostream& o) const
+{
+    //Object::print(o);
+    o << "L:" << getLevel() << " ";
+    Object::print(o);
+    if( health > 0 )
+        o << " h:" << getHealth();
 }

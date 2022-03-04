@@ -21,11 +21,6 @@
         virtual void update(Player& player, std::vector<Monster>& monsters) = 0;
         virtual void print(std::ostream& o) const;
 
-//        virtual void print(std::ostream& o) const
-//        {
-//
-//        }
-
         bool isDead();
         Type getName() const;
         int getLevel() const;
@@ -40,20 +35,8 @@
         int damageDone(int modification) const;
         int damageTaken(int damageDone, int AC);
 
-//        int damageDone(int modification) const
-//        {
-//            return 0;
-//        }
-//
-
-//        int damageTaken(int damageDone, int AC)
-//        {
-//            return 0;
-//        }
-
     };
 
     std::ostream& operator<< (std::ostream& o, const Object& src);
 
 #endif // !OBJECT_H
-

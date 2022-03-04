@@ -4,9 +4,7 @@
 #include "Player.h"
 
 Player::Player() :Object(Object::Type::player, 0, 1, 0)
-{
-
-}
+{ }
 
 void Player::levelUp()
 {
@@ -49,44 +47,44 @@ int Player::getSP() const
 	return SP;
 }
 
-int Player::damage() const
-{
-	int potentialDamage{ strength };
-	if (auto sword{ inventory.find(Item::Type::sword) }; sword != inventory.end())
-	{
-		potentialDamage += sword->second;
-	}
-	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
-
-
-	std::cout << *this << " deals ";
-	return std::max(1, (int)damageDealt(engine));
-}
+//int Player::damage() const
+//{
+//	int potentialDamage{ strength };
+//	if (auto sword{ inventory.find(Item::Type::sword) }; sword != inventory.end())
+//	{
+//		potentialDamage += sword->second;
+//	}
+//	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
+//
+//
+//	std::cout << *this << " deals ";
+//	return std::max(1, (int)damageDealt(engine));
+//}
 
 std::map<Item::Type, Item> Player::getInventory() const
 {
 	return inventory;
 }
 
-void Player::defense(int damage)
-{
-	int AC{ 0 };
-	if (auto armor{ inventory.find(Item::Type::armor) }; armor != inventory.end())
-	{
-		AC += armor->second;
-	}
-	if (auto shield{ inventory.find(Item::Type::shield) }; shield != inventory.end())
-	{
-		AC += shield->second;
-	}
-	std::normal_distribution<double> defense(AC, 1.0 / level);
-	damage = std::max(0, damage - (int)defense(engine));
-
-	std::cout << damage << " damage to ";
-
-	std::cout << *this << "!!!" << std::endl;
-	health -= damage;
-}
+//void Player::defense(int damage)
+//{
+//	int AC{ 0 };
+//	if (auto armor{ inventory.find(Item::Type::armor) }; armor != inventory.end())
+//	{
+//		AC += armor->second;
+//	}
+//	if (auto shield{ inventory.find(Item::Type::shield) }; shield != inventory.end())
+//	{
+//		AC += shield->second;
+//	}
+//	std::normal_distribution<double> defense(AC, 1.0 / level);
+//	damage = std::max(0, damage - (int)defense(engine));
+//
+//	std::cout << damage << " damage to ";
+//
+//	std::cout << *this << "!!!" << std::endl;
+//	health -= damage;
+//}
 
 void Player::heal()
 {
@@ -151,7 +149,7 @@ void Player::defend( int damage )
 }
 
 // The Player update virtual member function will allow you to select the monster to attack or allow you to heal.
-void Player::update(Player &player, std::vector<Monster> &monsters)
+void Player::update(Player& player, std::vector<Monster>& monsters)
 {
     std::cout << "What do you do? (a)ttack (h)eal ";
     char command{ 'x' };
@@ -174,4 +172,12 @@ void Player::update(Player &player, std::vector<Monster> &monsters)
             std::cout << "please enter a or h" << std::endl;
             break;
     }
+}
+
+void Player::print(std::ostream &o) const
+{
+    //Object::print(o);
+    o << "L:" << getLevel() << " ";
+    Object::print(o);
+    o << " h:" << getHealth();
 }
