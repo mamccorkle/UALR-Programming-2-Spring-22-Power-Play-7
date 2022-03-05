@@ -4,7 +4,6 @@
 
 Monster::Monster(const Player& player)
 {
-	//set level based on player level
 	std::normal_distribution<double> monsterLevel((float)player.getLevel(), player.getLevel() / 4.0);
 	level = std::max(1, (int)monsterLevel(engine));
 
@@ -53,27 +52,6 @@ Monster::Monster(const Player& player)
 	strength = std::max(1, (int)randomStrength(engine));
 	health = std::max(1, (int)randomHealth(engine));
 }
-
-
-//int Monster::damage() const
-//{
-//	int potentialDamage{ strength };
-//	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
-//
-//
-//	std::cout << *this << " deals ";
-//	return std::max(1, (int)damageDealt(engine));
-//}
-//
-//void Monster::defense(int damage)
-//{
-//	std::normal_distribution<double> defense(AC, 1.0 / level);
-//	damage = std::max(0, damage - (int)defense(engine));
-//	std::cout << damage << " damage to ";
-//
-//	std::cout << *this << "!!!" << std::endl;
-//	health -= damage;
-//}
 
 // Call damageDone with 0 as the argument as the monster does not have an inventory:
 int Monster::attack() const
