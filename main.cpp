@@ -4,47 +4,16 @@
 //  Project: UALR - Programming 2 - Spring 22 - Power Play 7
 //  Created by: Mark McCorkle on 20220304
 //  Based on: Code Provided by Sean Orme
-//  IDE: CLion 2021.2.3     - VERIFIED WORKING
-//  IDE: XCode              - VERIFIED/UNVERIFIED
-//  IDE: Visual Studio 2022 - VERIFIED/UNVERIFIED
-//  IDE: Linux via g++      - VERIFIED/UNVERIFIED
+//  IDE: CLion 2021.2.3     - VERIFIED WORKINGISH
+//  IDE: XCode              - UNVERIFIED
+//  IDE: Visual Studio 2022 - VERIFIED
+//  IDE: Linux via g++      - VERIFIED (g++ -std=c++17 -Wall main.cpp Item.cpp Player.cpp Monster.cpp Object.cpp -o main)
 //
-//  OBJECTIVES:
-// TODO:
-// TODO: Object.h gets four purely virtual methods:
-// TODO:     1)  virtual int attack() const = 0;                                                            -   COMPLETE
-// TODO:         a)  Player: calls damageDone passing in bonusValue for sword or 0.                         -   COMPLETE
-// TODO:             returns value returned by damageDone                                                   -   COMPLETE
-// TODO:         b)  Monster: calls damageDone(0) and returns the returned value.                           -   COMPLETE
-// TODO:     2)  virtual void defend(int damage) = 0;                                                       -   COMPLETE
-// TODO:         a)  Player: calculates AC, passes along damage and AC to damageTaken                       -   COMPLETE
-// TODO:         b)  Monster: calls damageTaken(damage, AC);                                                -   COMPLETE
-// TODO:     3)  virtual void update(Player& player, std::vector<Monster>& monsters) = 0;                   -   COMPLETE
-// TODO:         a)  Player: lines 44-60 from Goal.6.cpp goes here. The part dealing with attacking vs      -   COMPLETE
-// TODO:             healing.
-// TODO:             Also playerAttack function is no longer a function, just put the code in the ‘a’ case.
-// TODO:         b)  Monster: The part inside the for_each goes here. for_each now just calls the update…   -   COMPLETE
-// TODO:     4)  virtual void print(std::ostream& o) const;                                                 -   COMPLETE
-// TODO:         a)  the overload of the << operator will call this to make sure it the proper one is       -   COMPLETE
-// TODO:             called!
-// TODO:
-// TODO: And two protected methods:                                                                         -   COMPLETE
-// TODO:     1)  int damageDone(int modification) const;                                                    -   COMPLETE
-// TODO:         a)  does the common bits for attack. Monsters pass in 0, player based on sword             -   COMPLETE
-// TODO:     2)  int damageTaken(int damageDone, int AC);                                                   -   COMPLETE
-// TODO:         a)  does the common bits for defend.                                                       -   COMPLETE
-// TODO:
-// TODO: Mark all appropriate overrides                                                                     -   COMPLETE
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <random>
 #include <algorithm>
-#include <fstream>
-#include <map>
-
-#include "Item.h"
 #include "Object.h"
 #include "Player.h"
 #include "Monster.h"
@@ -67,7 +36,7 @@ int main()
         system("pause");
         system("cls");
 
-        while (!player.isDead() && monsters.size() > 0)
+        while (!player.isDead() && !monsters.empty())
         {
 
             displayBattle(player, monsters);
@@ -91,11 +60,11 @@ int main()
     {
         std::cout << "You Have Died" << std::endl;
     }
-    if (player.isDead() && monsters.size() == 0)
+    if (player.isDead() && monsters.empty())
     {
         std::cout << "BUT" << std::endl;
     }
-    if (monsters.size() == 0)
+    if (monsters.empty())
     {
         std::cout << "You have killed the monsters!!!" << std::endl;
     }
