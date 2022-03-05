@@ -72,7 +72,7 @@ int Object::damageTaken(int damageDone, int AC)
     std::normal_distribution<double> defense(AC, 1.0 / level);
     damageDone = std::max(0, damageDone - (int)defense(engine));
     std::cout << damageDone << " damage to ";
-
+    nameOnly = true;
     std::cout << *this << "!!!" << std::endl;
     return health -= damageDone;
 }

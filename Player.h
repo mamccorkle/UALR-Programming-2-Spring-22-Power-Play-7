@@ -28,7 +28,7 @@
         std::map<Item::Type, Item> inventory;
         int SP{ 0 };
     };
-    std::ostream& operator<< (std::ostream& o, const Player& src);
+//    std::ostream& operator<< (std::ostream& o, const Player& src);
     std::ostream& operator<< (std::ostream& o, const std::map<Item::Type, Item>& src);
 
 #endif // !PLAYER_H

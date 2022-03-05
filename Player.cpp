@@ -105,11 +105,11 @@ void Player::heal()
 	}
 }
 
-std::ostream& operator<<(std::ostream& o, const Player& src)
-{
-	o << src << ", SP:" << src.getSP();
-	return o;
-}
+//std::ostream& operator<<(std::ostream& o, const Player& src)
+//{
+//	o << src << ", SP:" << src.getSP();
+//	return o;
+//}
 
 std::ostream& operator<<(std::ostream& o, const std::map<Item::Type, Item>& src)
 {
@@ -179,11 +179,12 @@ void Player::update(Player& player, std::vector<Monster>& monsters)
 void Player::print(std::ostream &o) const
 {
     if(nameOnly)
-        print(o);
+        Object::print(o);
     else
     {
         o << "L:" << getLevel() << " ";
-        print(o);
-        o << " h:" << getHealth();
+        Object::print(o);
+        o << " h:" << getHealth() << ", SP:" << getSP() << std::endl;
+        o << inventory;
     }
 }

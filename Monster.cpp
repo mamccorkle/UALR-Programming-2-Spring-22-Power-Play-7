@@ -86,11 +86,11 @@ void Monster::update(Player& player, std::vector<Monster>& monsters)
 void Monster::print(std::ostream& o) const
 {
     if(nameOnly)
-        print(o);
+        Object::print(o);
     else
     {
         o << "L:" << getLevel() << " ";
-        print(o);
+        Object::print(o);
         if (health > 0)
             o << " h:" << getHealth();
     }
