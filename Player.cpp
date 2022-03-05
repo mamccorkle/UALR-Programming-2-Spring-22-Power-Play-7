@@ -48,44 +48,10 @@ int Player::getSP() const
 	return SP;
 }
 
-//int Player::damage() const
-//{
-//	int potentialDamage{ strength };
-//	if (auto sword{ inventory.find(Item::Type::sword) }; sword != inventory.end())
-//	{
-//		potentialDamage += sword->second;
-//	}
-//	std::normal_distribution<double> damageDealt(potentialDamage, 2.0);
-//
-//
-//	std::cout << *this << " deals ";
-//	return std::max(1, (int)damageDealt(engine));
-//}
-
 std::map<Item::Type, Item> Player::getInventory() const
 {
 	return inventory;
 }
-
-//void Player::defense(int damage)
-//{
-//	int AC{ 0 };
-//	if (auto armor{ inventory.find(Item::Type::armor) }; armor != inventory.end())
-//	{
-//		AC += armor->second;
-//	}
-//	if (auto shield{ inventory.find(Item::Type::shield) }; shield != inventory.end())
-//	{
-//		AC += shield->second;
-//	}
-//	std::normal_distribution<double> defense(AC, 1.0 / level);
-//	damage = std::max(0, damage - (int)defense(engine));
-//
-//	std::cout << damage << " damage to ";
-//
-//	std::cout << *this << "!!!" << std::endl;
-//	health -= damage;
-//}
 
 void Player::heal()
 {
@@ -104,12 +70,6 @@ void Player::heal()
 		std::cout << "Not enough SP!!!" << std::endl;
 	}
 }
-
-//std::ostream& operator<<(std::ostream& o, const Player& src)
-//{
-//	o << src << ", SP:" << src.getSP();
-//	return o;
-//}
 
 std::ostream& operator<<(std::ostream& o, const std::map<Item::Type, Item>& src)
 {

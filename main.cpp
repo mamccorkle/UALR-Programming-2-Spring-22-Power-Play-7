@@ -76,7 +76,7 @@ int main()
 
 void displayBattle(const Player& player, const std::vector<Monster>& monsters)
 {
-    // TODO: Fix -> Object::nameOnly = false; //TODO:: get rid of this and just dot he full cout.
+    Object::nameOnly = false;
     std::cout << player << std::endl;
     std::cout << std::endl << "  Monsters: " << std::endl;
     {

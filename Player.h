@@ -13,9 +13,7 @@
 
         int getLevel() const override;
         int getSP() const;
-//        int damage() const;
         std::map<Item::Type, Item> getInventory() const;
-//        void defense(int damage);
         void heal();
 
         int attack() const override;
@@ -28,7 +26,6 @@
         std::map<Item::Type, Item> inventory;
         int SP{ 0 };
     };
-//    std::ostream& operator<< (std::ostream& o, const Player& src);
     std::ostream& operator<< (std::ostream& o, const std::map<Item::Type, Item>& src);
 
 #endif // !PLAYER_H
