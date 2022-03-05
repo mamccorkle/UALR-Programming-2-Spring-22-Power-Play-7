@@ -7,17 +7,17 @@
     class Monster: public Object
     {
     public:
-        Monster() {};
-        Monster(const Player& player);
+        Monster() = default;
+        explicit Monster(const Player& player);
 
 //        int damage() const;
 //        void defense(int damage);
 
-        virtual int attack() const override;
-        virtual void defend( int damage ) override;
-        virtual void update(Player& player, std::vector<Monster>& monsters) override;
+        int attack() const override;
+        void defend( int damage ) override;
+        void update(Player& player, std::vector<Monster>& monsters) override;
 
-        virtual void print(std::ostream& o) const override;
+        void print(std::ostream& o) const override;
 
     private:
         int AC{ 0 };

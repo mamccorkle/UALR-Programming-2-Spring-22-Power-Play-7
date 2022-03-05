@@ -11,6 +11,7 @@
     public:
         static std::random_device seed;
         static std::default_random_engine engine;
+        static bool nameOnly;
         enum class Type { player, slime, orc, sprite, dragon, numTypes };
 
         Object() {}
@@ -21,9 +22,9 @@
         virtual void update(Player& player, std::vector<Monster>& monsters) = 0;
         virtual void print(std::ostream& o) const;
 
-        bool isDead();
+        bool isDead() const;
         Type getName() const;
-        int getLevel() const;
+        virtual int getLevel() const;
         int getHealth() const;
 
     protected:

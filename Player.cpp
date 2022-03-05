@@ -2,6 +2,7 @@
 #include <random>
 #include <iostream>
 #include "Player.h"
+#include "Monster.h"
 
 Player::Player() :Object(Object::Type::player, 0, 1, 0)
 { }
@@ -88,6 +89,7 @@ std::map<Item::Type, Item> Player::getInventory() const
 
 void Player::heal()
 {
+    nameOnly = true;
 	if (SP >= 2)
 	{
 		std::normal_distribution<double> randomHeal(strength, 3.0);
@@ -105,7 +107,7 @@ void Player::heal()
 
 std::ostream& operator<<(std::ostream& o, const Player& src)
 {
-	o << (Object)src << ", SP:" << src.getSP();
+	o << src << ", SP:" << src.getSP();
 	return o;
 }
 
@@ -161,7 +163,7 @@ void Player::update(Player& player, std::vector<Monster>& monsters)
             std::cout << "Which Monster: ";
             int monsterNum{ 0 };
             std::cin >> monsterNum;
-            if (monsterNum > 0 && monsterNum <= monsters.size())
+            if (monsterNum > 0 && monsterNum <= static_cast<int>(monsters.size()))
                 monsters.at( monsterNum - 1 ).defend( player.attack() );
             break;
         }
@@ -176,8 +178,12 @@ void Player::update(Player& player, std::vector<Monster>& monsters)
 
 void Player::print(std::ostream &o) const
 {
-    //Object::print(o);
-    o << "L:" << getLevel() << " ";
-    Object::print(o);
-    o << " h:" << getHealth();
+    if(nameOnly)
+        print(o);
+    else
+    {
+        o << "L:" << getLevel() << " ";
+        print(o);
+        o << " h:" << getHealth();
+    }
 }

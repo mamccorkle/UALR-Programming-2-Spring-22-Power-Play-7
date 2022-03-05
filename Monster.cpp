@@ -19,11 +19,11 @@ Monster::Monster(const Player& player)
 	case Object::Type::slime:
 		strengthVariance = level * 1.5;
 		healthVariance = level * 1.25;
-		ACVariance = level / 2;
+		ACVariance = level / 2.0;
 		break;
 	case Object::Type::orc:
 		strengthVariance = level * 2.0;
-		healthVariance = (long long)level * level * 1.25;
+		healthVariance = (double)level * level * 1.25;
 		ACVariance = level * 1.5;
 		break;
 	case Object::Type::sprite:
@@ -33,10 +33,14 @@ Monster::Monster(const Player& player)
 		break;
 	case Object::Type::dragon:
 		strengthVariance = level * 6.0;
-		healthVariance = (long long)level * level * 3.0;
+		healthVariance = (double)level * level * 3.0;
 		ACVariance = level * 3;
 		break;
-	}
+    case Type::player:
+        break;
+    case Type::numTypes:
+        break;
+    }
 
 	std::normal_distribution<double> randomStrength(strengthVariance, level / 4.0);
 	std::normal_distribution<double> randomHealth(healthVariance * 5, level / 2.0);
@@ -103,9 +107,13 @@ void Monster::update(Player& player, std::vector<Monster>& monsters)
 
 void Monster::print(std::ostream& o) const
 {
-    //Object::print(o);
-    o << "L:" << getLevel() << " ";
-    Object::print(o);
-    if( health > 0 )
-        o << " h:" << getHealth();
+    if(nameOnly)
+        print(o);
+    else
+    {
+        o << "L:" << getLevel() << " ";
+        print(o);
+        if (health > 0)
+            o << " h:" << getHealth();
+    }
 }

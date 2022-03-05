@@ -2,8 +2,7 @@
 #include "Item.h"
 
 Item::Item(Type classification, int bonusValue) : classification{ classification }, bonusValue{ bonusValue }
-{
-}
+{ }
 
 Item::Type Item::getClassification() const
 {
@@ -28,7 +27,9 @@ std::ostream& operator<<(std::ostream& o, const Item& src)
 	case Item::Type::sword:
 		o << "Sword";
 		break;
-	}
+    case Item::Type::numTypes:
+        break;
+    }
 	o << "+" << src.getBonusValue();
 	return o;
 }

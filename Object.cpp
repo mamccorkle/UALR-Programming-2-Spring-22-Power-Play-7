@@ -4,10 +4,12 @@
 std::random_device Object::seed;
 std::default_random_engine Object::engine(seed());
 
+bool Object::nameOnly{ false };
+
 Object::Object(Type name, int strength, int health, int level) : name{ name }, strength{ strength }, health{ health }, level{ level }
 { }
 
-bool Object::isDead()
+bool Object::isDead() const
 {
 	return health <= 0;
 }
@@ -51,6 +53,8 @@ void Object::print(std::ostream& o) const
             break;
         case Object::Type::dragon:
             std::cout << "Dragon";
+            break;
+        case Type::numTypes:
             break;
     }
 }
